@@ -1,0 +1,104 @@
+<div class="flex justify-betwee h-full">
+  <div
+    class="w-[100%] bg-gradient-to-r from-indigo-500 to-primary p-40 lg:w-[70%] md:w-[50%] hidden lg:flex items-center"
+  >
+    <div class="h-full flex flex-col justify-center gap-2">
+      <h1 class="text-5xl text-white">Hades Sales</h1>
+      <p class="text-white w-[60%]">
+        ¡Bienvenido a HadesSales! Tu solución integral para gestionar tu negocio
+        con facilidad y eficiencia. ¡Ingresa para descubrir un mundo de
+        posibilidades!
+      </p>
+      <div>
+        <button class="btn bg-slate-100 text-primary rounded-3xl">
+          <P>Leer mas</P>
+        </button>
+      </div>
+    </div>
+  </div>
+  <form
+    [formGroup]="formAuth"
+    (ngSubmit)="authUserByTenant()"
+    class="flex items-center justify-center w-[100%] lg:w-[30%]"
+  >
+    <div class="flex flex-col gap-10 w-[90%] lg:w-[60%]">
+      <div>
+        <h3 class="text-2xl">¡Hola de Nuevo!</h3>
+        <p>¡Qué gusto verte de nuevo por aquí!</p>
+      </div>
+      <div class="flex gap-5 flex-col">
+        <div>
+          <label class="input input-bordered flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              class="w-4 h-4 opacity-70"
+            >
+              <path
+                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"
+              />
+            </svg>
+            <input 
+              type="text" 
+              class="grow" 
+              placeholder="email" 
+              formControlName="email" 
+            />
+          </label>
+        </div>
+        <div>
+          <label class="input input-bordered flex items-center gap-2 border">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              class="w-4 h-4 opacity-70"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <input
+              type="password"
+              class="grow"
+              placeholder="*******"
+              formControlName="password" 
+            />
+          </label>
+        </div>
+        <div>
+          <ng-container *ngIf="loadingService; else elseTemplate">
+            <button class="btn btn-active btn-primary w-full rounded-3xl">
+              <span class="loading loading-spinner"></span>
+              <P>Loading...</P>
+            </button>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <div>
+              <button 
+                type="submit" 
+                class="btn btn-active btn-primary w-full rounded-3xl"
+              >
+                <P>Iniciar Sesion</P>
+              </button>
+            </div>
+          </ng-template>
+        </div>
+        <div *ngIf="!statusForm.isValidForm" role="alert" class="alert alert-error text-xs flex">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span class="flex gap-2">
+            <span>{{statusForm.message}}</span>
+          </span>
+        </div>
+        <div class="w-full text-center">
+          <a href="#" class="text-xs text-slate-400">
+            Olvidastes tu contraseña?
+          </a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
