@@ -1,0 +1,74 @@
+<div class="flex h-full">
+  <div class="w-full">
+    <div class="navbar bg-[#1F1D2B] w-full h-[5%]">
+      <div class="flex-1">
+        <a class="btn btn-ghost text-xl text-white">Distrito</a>
+      </div>
+      <div class="flex-none gap-2">
+        <div class="form-control">
+          <input
+            type="text"
+            placeholder="Search"
+            class="input input-bordered w-24 md:w-auto"
+          />
+        </div>
+        <div class="dropdown dropdown-end">
+          <div
+            tabindex="0"
+            role="button"
+            class="btn btn-ghost btn-circle avatar"
+          >
+            <div class="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+              />
+            </div>
+          </div>
+          <ul
+            tabindex="0"
+            class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#1F1D2B] rounded-box w-52"
+          >
+            <li class="text-white">
+              <a class="justify-between">
+                Profile
+                <span class="badge">New</span>
+              </a>
+            </li>
+            <li class="text-white"><a>Settings</a></li>
+            <li class="text-white"><a>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-row h-[95%]">
+      <div class="lg:w-[5%] py-6 h-full text-white bg-[#1F1D2B]">
+        <div class="gap-10 flex-col flex items-center w-full cursor-pointer">
+          <div class=" w-full text-center hover:bg-[#EA7C69]">
+            <mat-icon> home </mat-icon>
+          </div>
+          <div  class=" w-full text-center hover:bg-[#EA7C69] cursor-pointer">
+            <mat-icon> menu </mat-icon>
+          </div>
+          <div class=" w-full text-center hover:bg-[#EA7C69] cursor-pointer">
+            <mat-icon> payments </mat-icon>
+          </div>
+          <div class=" w-full text-center hover:bg-[#EA7C69] cursor-pointer">
+            <mat-icon> fact_check </mat-icon>
+          </div>
+          <div class=" w-full text-center hover:bg-[#EA7C69] cursor-pointer">
+            <mat-icon> settings </mat-icon>
+          </div>
+          <div class=" w-full text-center hover:bg-[#EA7C69] cursor-pointer">
+            <mat-icon> logout </mat-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-[95%] bg-[#393C49]">
+        content
+      </div>
+    </div>
+  </div>
+</div>

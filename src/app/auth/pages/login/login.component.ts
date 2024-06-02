@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Login_Request } from '../../../interfaces/auth.interfaces';
 import { LoginService } from '../../login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
 
   constructor(
     private loginService: LoginService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.formAuth = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,13 +43,15 @@ export class LoginComponent {
         email: this.formAuth.value.email,
         password: this.formAuth.value.password,
         g_recaptcha_response: '',
-        tenantsId: '',
+        tenantsId: 'distrito',
       };
 
       this.loginService.authUserByTenant(authUser).subscribe({
         next: (res) => {
           this.loadingService = false;
           console.log(res);
+
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.loadingService = false;
