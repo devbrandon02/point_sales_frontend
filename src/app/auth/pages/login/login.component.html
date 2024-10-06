@@ -1,11 +1,11 @@
 <div class="flex justify-betwee h-full">
   <div
-    class="w-[100%] bg-gradient-to-r from-indigo-500 to-primary p-40 lg:w-[70%] md:w-[50%] hidden lg:flex items-center"
+    class="w-[100%] bg-gradient-to-r from-indigo-500 to-primary p-40 lg:w-[60%] md:w-[50%] hidden lg:flex items-center"
   >
     <div class="h-full flex flex-col justify-center gap-2">
-      <h1 class="text-5xl text-white">Hades Sales</h1>
+      <h1 class="text-5xl text-white">Hades POSolutions</h1>
       <p class="text-white w-[60%]">
-        ¡Bienvenido a HadesSales! Tu solución integral para gestionar tu negocio
+        ¡Bienvenido a Hades POSolutions ! Tu solución integral para gestionar tu negocio
         con facilidad y eficiencia. ¡Ingresa para descubrir un mundo de
         posibilidades!
       </p>
@@ -19,7 +19,7 @@
   <form
     [formGroup]="formAuth"
     (ngSubmit)="authUserByTenant()"
-    class="flex items-center justify-center w-[100%] lg:w-[30%]"
+    class="flex items-center justify-center w-[100%] lg:w-[40%]"
   >
     <div class="flex flex-col gap-10 w-[90%] lg:w-[60%]">
       <div>
@@ -39,11 +39,11 @@
                 d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"
               />
             </svg>
-            <input 
-              type="text" 
-              class="grow" 
-              placeholder="email" 
-              formControlName="email" 
+            <input
+              type="text"
+              class="grow"
+              placeholder="Documento de Identidad"
+              formControlName="identity_document"
             />
           </label>
         </div>
@@ -65,7 +65,7 @@
               type="password"
               class="grow"
               placeholder="*******"
-              formControlName="password" 
+              formControlName="password"
             />
           </label>
         </div>
@@ -73,30 +73,36 @@
           <ng-container *ngIf="loadingService; else elseTemplate">
             <button class="btn btn-active btn-primary w-full rounded-3xl">
               <span class="loading loading-spinner"></span>
-              <P>Loading...</P>
             </button>
           </ng-container>
+
           <ng-template #elseTemplate>
-            <div>
-              <button 
-                type="submit" 
-                class="btn btn-active btn-primary w-full rounded-3xl"
-              >
-                <P>Iniciar Sesion</P>
-              </button>
+            <div class="flex gap-4 flex-col">
+              <div>
+                <div
+                  *ngIf="!statusForm.isValidForm"
+                  class="text-xs flex rounded-3xl"
+                >
+                  <span class="flex gap-2">
+                    <span class="text-red-400">{{ statusForm.message }}</span>
+                  </span>
+                </div>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-active hover:bg-[#0056b3] btn-primary w-full rounded-2xl"
+                >
+                  <P>Iniciar Sesion</P>
+                </button>
+              </div>
             </div>
           </ng-template>
         </div>
-        <div *ngIf="!statusForm.isValidForm" role="alert" class="alert alert-error text-xs flex">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span class="flex gap-2">
-            <span>{{statusForm.message}}</span>
-          </span>
-        </div>
         <div class="w-full text-center">
-          <a href="#" class="text-xs text-slate-400">
+          <button (click)="redirectForgotPassword()" class="text-xs text-slate-400">
             Olvidastes tu contraseña?
-          </a>
+          </button>
         </div>
       </div>
     </div>

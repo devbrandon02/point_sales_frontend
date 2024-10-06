@@ -12,22 +12,31 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   @Input() loadingService: boolean = false;
   public formAuth: FormGroup;
+  public token_captcha: string | undefined;
   public statusForm = {
     isValidForm: true,
     message: '',
-  }
+  };
 
   constructor(
     private loginService: LoginService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {
+    this.token_captcha = undefined;
     this.formAuth = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      identity_document: ['', [Validators.required, Validators.min(10)]],
       password: ['', [Validators.required]],
     });
   }
 
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  redirectForgotPassword() {
+    this.router.navigate(['/auth/forgot-password']);
+  }
 
   authUserByTenant() {
     console.log('Auth user by tenant', this.formAuth.value);
@@ -37,13 +46,12 @@ export class LoginComponent {
       this.statusForm = {
         isValidForm: true,
         message: '',
-      }
+      };
 
       const authUser: Login_Request = {
-        email: this.formAuth.value.email,
+        identity_document: this.formAuth.value.identity_document,
         password: this.formAuth.value.password,
         g_recaptcha_response: '',
-        tenantsId: 'distrito',
       };
 
       this.loginService.authUserByTenant(authUser).subscribe({
@@ -58,7 +66,7 @@ export class LoginComponent {
           this.statusForm = {
             isValidForm: false,
             message: 'El usuario no existe o la contraseña es incorrecta',
-          }
+          };
           console.log(err);
         },
       });
@@ -66,7 +74,7 @@ export class LoginComponent {
       this.statusForm = {
         isValidForm: false,
         message: 'Revise los campos del formulario',
-      }
+      };
 
       this.loadingService = false;
       console.log('Form is invalid');

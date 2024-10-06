@@ -4,30 +4,30 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
-const routes: Routes = [{
-  path: '',
-  children: [
-    {
-      path: 'login',
-      component: LoginComponent
-    },
-    {
-      path: 'forgot-password',
-      component: ForgotPasswordComponent
-    },
-    {
-      path: '**',
-      redirectTo: 'login',
-    }
-  ]
-}]
-
+const routes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: { animation: 'LoginPage' },
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+        data: { animation: 'ForgotPasswordPage' },
+      },
+      {
+        path: '**',
+        redirectTo: 'login',
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

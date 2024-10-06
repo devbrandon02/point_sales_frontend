@@ -1,3 +1,7 @@
-<div class="h-full" data-theme="light">
-  <router-outlet></router-outlet>
+<div
+  [@routeAnimations]="prepareRoute(outlet)"
+  class="h-full"
+  data-theme="light"
+>
+  <router-outlet #outlet="outlet"></router-outlet>
 </div>
