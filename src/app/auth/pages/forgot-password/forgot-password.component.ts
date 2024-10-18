@@ -10,7 +10,7 @@ import { LoginService } from '../../login.service';
 })
 export class ForgotPasswordComponent {
   @Input() loadingService: boolean = false;
-  public formAuth: FormGroup;
+  public formForgotPassword: FormGroup;
   public isSuccessForgotPassword: boolean = false;
   public errorForgotPassword: boolean = false;
 
@@ -19,7 +19,7 @@ export class ForgotPasswordComponent {
     private loginService: LoginService,
     private formBuilder: FormBuilder
   ) {
-    this.formAuth = this.formBuilder.group({
+    this.formForgotPassword = this.formBuilder.group({
       identity_document: ['', [Validators.required, Validators.min(10)]],
     });
   }
@@ -34,20 +34,21 @@ export class ForgotPasswordComponent {
     
     this.loginService
       .forgotPasswordService({
-        identity_document: this.formAuth.value.identity_document,
+        identity_document: this.formForgotPassword.value.identity_document,
       })
       .subscribe({
         next: (res) => {
           this.loadingService = false;
-          this.formAuth.reset();
           this.isSuccessForgotPassword = true;
           this.errorForgotPassword = false;
+          this.formForgotPassword.reset();
           console.log(res);
         },
         error: (err) => {
           this.loadingService = false;
           this.isSuccessForgotPassword = false;
           this.errorForgotPassword = true;
+          this.formForgotPassword.reset();
           console.log(err);
         },
       });

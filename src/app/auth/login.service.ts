@@ -39,4 +39,19 @@ export class LoginService {
       }
     );
   }
+
+  resetPasswordService(payloadResetPassword: any) {
+    console.log('Reset password');
+
+    return this.http.post(
+      'http://localhost:8000/api/v1/auth/reset-password',
+      payloadResetPassword,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
+  }
 }
